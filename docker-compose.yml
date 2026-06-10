@@ -1,7 +1,4 @@
-version: '3.8'
-
 services:
-
   mongo-auth:
     image: mongo
     volumes:
@@ -21,6 +18,11 @@ services:
     image: rabbitmq:3-management
     ports:
       - "15672:15672"
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   auth-service:
     build: ./auth-service
@@ -37,14 +39,17 @@ services:
   measure-service:
     build: ./measure-service
     depends_on:
-      - mongo-measures
-      - rabbitmq
+      mongo-measures:
+        condition: service_started
+      rabbitmq:
+        condition: service_healthy
     env_file: ./measure-service/.env
 
   notification-service:
     build: ./notification-service
     depends_on:
-      - rabbitmq
+      rabbitmq:
+        condition: service_healthy
     env_file: ./notification-service/.env
 
   nginx:

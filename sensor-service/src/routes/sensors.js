@@ -20,10 +20,10 @@ router.post('/', auth, async (req, res) => {
     const sensor = await Sensor.create(req.body);
     res.status(201).json(sensor);
   } catch (err) {
+    console.error('SENSOR ERROR:', err);
     res.status(400).json({ message: err.message });
   }
 });
-
 // PUT update sensor
 router.put('/:id', auth, async (req, res) => {
   try {
