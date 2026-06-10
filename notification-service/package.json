@@ -1,0 +1,10 @@
+{
+  "name": "notification-service",
+  "version": "1.0.0",
+  "main": "src/consumer.js",
+  "scripts": { "start": "node src/consumer.js" },
+  "dependencies": {
+    "amqplib": "^0.10.3",
+    "dotenv": "^16.0.0"
+  }
+}

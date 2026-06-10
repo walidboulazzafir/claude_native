@@ -1,0 +1,67 @@
+version: '3.8'
+
+services:
+
+  mongo-auth:
+    image: mongo
+    volumes:
+      - mongo-auth-data:/data/db
+
+  mongo-sensors:
+    image: mongo
+    volumes:
+      - mongo-sensors-data:/data/db
+
+  mongo-measures:
+    image: mongo
+    volumes:
+      - mongo-measures-data:/data/db
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    ports:
+      - "15672:15672"
+
+  auth-service:
+    build: ./auth-service
+    depends_on:
+      - mongo-auth
+    env_file: ./auth-service/.env
+
+  sensor-service:
+    build: ./sensor-service
+    depends_on:
+      - mongo-sensors
+    env_file: ./sensor-service/.env
+
+  measure-service:
+    build: ./measure-service
+    depends_on:
+      - mongo-measures
+      - rabbitmq
+    env_file: ./measure-service/.env
+
+  notification-service:
+    build: ./notification-service
+    depends_on:
+      - rabbitmq
+    env_file: ./notification-service/.env
+
+  nginx:
+    build: ./nginx
+    ports:
+      - "80:80"
+    depends_on:
+      - auth-service
+      - sensor-service
+      - measure-service
+
+  frontend:
+    build: ./frontend-react
+    ports:
+      - "3000:3000"
+
+volumes:
+  mongo-auth-data:
+  mongo-sensors-data:
+  mongo-measures-data:
