@@ -1,0 +1,210 @@
+{
+  "info": {
+    "_postman_id": "2d2f9fc4-8ae1-45d1-bf8b-8fbd8f2e31a9",
+    "name": "Climdash",
+    "description": "### Welcome to Postman! This is your first collection.\n\nCollections are your starting point for building and testing APIs. You can use this one to:\n\n• Group related requests  \n• Test your API in real-world scenarios  \n• Document and share your requests\n\nUpdate the name and overview whenever you’re ready to make it yours.\n\n[Learn more about Postman Collections.](https://learning.postman.com/docs/collections/collections-overview/)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "53148001"
+  },
+  "item": [
+    {
+      "name": "http://localhost/api/auth/login",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"email\": \"admin@test.com\",\r\n  \"password\": \"123456\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost/api/auth/login",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "path": [
+            "api",
+            "auth",
+            "login"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "http://localhost/api/auth/register",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"username\": \"admin\",\r\n  \"email\": \"admin@test.com\",\r\n  \"password\": \"123456\",\r\n  \"role\": \"technician\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost/api/auth/register",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "path": [
+            "api",
+            "auth",
+            "register"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "http://localhost/api/sensors/",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhMjlhZWU1YjliMWNmMGEwNDBkYWNmZSIsInJvbGUiOiJ0ZWNobmljaWFuIiwiaWF0IjoxNzgxMTE2OTA2LCJleHAiOjE3ODEyMDMzMDZ9.NXEHLLd7IL6YPbY2aUSJkewggXS6nEzEe1WXWd3Ou8Y",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"reference\": \"S01\",\r\n  \"type\": \"temperature\",\r\n  \"location\": \"Room1\",\r\n  \"minThreshold\": 18,\r\n  \"maxThreshold\": 30\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost/api/sensors/",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "path": [
+            "api",
+            "sensors",
+            ""
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "http://localhost/api/measures/",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhMjlhZWU1YjliMWNmMGEwNDBkYWNmZSIsInJvbGUiOiJ0ZWNobmljaWFuIiwiaWF0IjoxNzgxMTE4NTA4LCJleHAiOjE3ODEyMDQ5MDh9.dlTAYNLdlYE1RuKE3LOWYDrxZo1b_mTBgXi_hnjYSuU",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"sensorRef\": \"S01\",\r\n  \"type\": \"temperature\",\r\n  \"value\": 99,\r\n  \"minThreshold\": 18,\r\n  \"maxThreshold\": 30\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost/api/measures/",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "path": [
+            "api",
+            "measures",
+            ""
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "http://localhost/api/measures/",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost/api/measures/",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "path": [
+            "api",
+            "measures",
+            ""
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "http://localhost/api/sensors/",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhMjlhZWU1YjliMWNmMGEwNDBkYWNmZSIsInJvbGUiOiJ0ZWNobmljaWFuIiwiaWF0IjoxNzgxMTE2OTA2LCJleHAiOjE3ODEyMDMzMDZ9.NXEHLLd7IL6YPbY2aUSJkewggXS6nEzEe1WXWd3Ou8Y",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"reference\": \"S01\",\r\n  \"type\": \"temperature\",\r\n  \"location\": \"Room1\",\r\n  \"minThreshold\": 18,\r\n  \"maxThreshold\": 30\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost/api/sensors/",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "path": [
+            "api",
+            "sensors",
+            ""
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
